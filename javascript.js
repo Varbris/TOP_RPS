@@ -8,4 +8,7 @@ function getHumanChoise() {
   return inputMessage;
 }
 
+let humanScore = 0;
+let computerScore = 0;
+
 console.log(getHumanChoise());
