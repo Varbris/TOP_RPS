@@ -8,7 +8,15 @@ function getHumanChoise() {
   return inputMessage;
 }
 
+function toInsensitive(text) {
+  if (text === text.toUpperCase() || text === text.toLowerCase()) {
+    return text.toLowerCase();
+  } else {
+    return text.toLowerCase();
+  }
+}
+
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(getHumanChoise());
+console.log(toInsensitive(getHumanChoise()));
