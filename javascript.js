@@ -3,4 +3,9 @@ function getComputerChoise() {
   return compChoise;
 }
 
-console.log(getComputerChoise());
+function getHumanChoise() {
+  let inputMessage = prompt("What's yours choise?");
+  return inputMessage;
+}
+
+console.log(getHumanChoise());
