@@ -41,9 +41,15 @@ function playRound(humanChoise, computerChoise) {
     ) {
       humanScore++;
       return "Humanity Wins!";
-    } else {
+    } else if (
+      (computerChoise === "paper" && humanChoise === "rock") ||
+      (computerChoise === "rock" && humanChoise === "scissor") ||
+      (computerChoise === "scissor" && humanChoise === "paper")
+    ) {
       computerScore++;
       return "Computer Wins!";
+    } else {
+      return "Invalid input";
     }
   }
 }
@@ -54,4 +60,4 @@ let computerScore = 0;
 const humanSelection = toInsensitive(getHumanChoise());
 const computerSelection = toInsensitive(getComputerChoise());
 
-console.log(getHumanChoise());
+console.log(playRound(humanSelection, computerSelection));
