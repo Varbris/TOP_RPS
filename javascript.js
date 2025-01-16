@@ -22,7 +22,23 @@ function toInsensitive(text) {
   }
 }
 
-function playRound(humanChoise, computerChoise) {}
+function playRound(humanChoise, computerChoise) {
+  if (humanChoise === computerChoise) {
+    return "It's a Draw!";
+  } else {
+    if (
+      (humanChoise === "paper" && computerChoise === "rock") ||
+      (humanChoise === "rock" && computerChoise === "scissor") ||
+      (humanChoise === "scissor" && computerChoise === "paper")
+    ) {
+      humanScore++;
+      return "Humanity Wins!";
+    } else {
+      computerScore++;
+      return "Computer Wins!";
+    }
+  }
+}
 
 let humanScore = 0;
 let computerScore = 0;
@@ -30,4 +46,4 @@ let computerScore = 0;
 const humanSelection = toInsensitive(getHumanChoise());
 const computerSelection = toInsensitive(getComputerChoise());
 
-console.log(computerSelection);
+console.log(playRound(humanSelection, computerSelection));
