@@ -11,6 +11,7 @@ function getComputerChoise() {
 
 function getHumanChoise() {
   let inputMessage = prompt("What's yours choise? (Rock,Paper, or Scissor");
+  inputMessage = toInsensitive(inputMessage);
   return userInputValidation(inputMessage);
 }
 
@@ -18,7 +19,7 @@ function userInputValidation(input) {
   if (input === "rock" || input === "paper" || input === "scissor") {
     return input;
   } else {
-    return "Invalid";
+    return 0;
   }
 }
 
@@ -31,33 +32,69 @@ function toInsensitive(text) {
 }
 
 function playRound(humanChoise, computerChoise) {
+  const winner = checkWinner(humanChoise, computerChoise);
+  if (winner === 0) {
+    console.log("Its a Draw");
+  } else if (winner === 1) {
+    console.log("Humanity wins!");
+    return humanScore++;
+  } else if (winner === 2) {
+    console.log("Computer wins!");
+    return computerScore++;
+  }
+}
+
+function checkWinner(humanChoise, computerChoise) {
   if (humanChoise === computerChoise) {
-    return "It's a Draw!";
+    console.log(
+      "Human: " + humanChoise + " vs " + "Computer: " + computerChoise
+    );
+    return 0;
+  } else if (
+    (humanChoise === "paper" && computerChoise === "rock") ||
+    (humanChoise === "rock" && computerChoise === "scissor") ||
+    (humanChoise === "scissor" && computerChoise === "paper")
+  ) {
+    console.log(
+      "Human: " + humanChoise + " vs " + "Computer: " + computerChoise
+    );
+    return 1;
+  } else if (
+    (computerChoise === "paper" && humanChoise === "rock") ||
+    (computerChoise === "rock" && humanChoise === "scissor") ||
+    (computerChoise === "scissor" && humanChoise === "paper")
+  ) {
+    console.log(
+      "Human: " + humanChoise + " vs " + "Computer: " + computerChoise
+    );
+    return 2;
+  }
+}
+
+function playGame() {
+  const humanSelection = getHumanChoise();
+  const computerSelection = toInsensitive(getComputerChoise());
+  if (humanSelection === 0) {
+    console.log("Input Invalid");
   } else {
-    if (
-      (humanChoise === "paper" && computerChoise === "rock") ||
-      (humanChoise === "rock" && computerChoise === "scissor") ||
-      (humanChoise === "scissor" && computerChoise === "paper")
-    ) {
-      humanScore++;
-      return "Humanity Wins!";
-    } else if (
-      (computerChoise === "paper" && humanChoise === "rock") ||
-      (computerChoise === "rock" && humanChoise === "scissor") ||
-      (computerChoise === "scissor" && humanChoise === "paper")
-    ) {
-      computerScore++;
-      return "Computer Wins!";
-    } else {
-      return "Invalid input";
-    }
+    playRound(humanSelection, computerSelection);
+  }
+}
+
+function checkFinalScore(human, computer) {
+  if (human > computer) {
+    console.log("Humanity Win! final score: " + human);
+  } else if (human < computer) {
+    console.log("Computer Win! final score: " + computer);
+  } else {
+    console.log("Its a Tie!");
   }
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
-const humanSelection = toInsensitive(getHumanChoise());
-const computerSelection = toInsensitive(getComputerChoise());
-
-console.log(playRound(humanSelection, computerSelection));
+for (let i = 0; i <= 5; i++) {
+  playGame();
+}
+checkFinalScore(humanScore, computerScore);
