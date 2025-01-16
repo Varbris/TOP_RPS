@@ -1,10 +1,16 @@
 function getComputerChoise() {
   const compChoise = Math.floor(Math.random() * 3 + 1);
-  return compChoise;
+  if (compChoise === 1) {
+    return "rock";
+  } else if (compChoise === 2) {
+    return "paper";
+  } else {
+    return "scissor";
+  }
 }
 
 function getHumanChoise() {
-  let inputMessage = prompt("What's yours choise?");
+  let inputMessage = prompt("What's yours choise? (Rock,Paper, or Scissor");
   return inputMessage;
 }
 
@@ -16,7 +22,12 @@ function toInsensitive(text) {
   }
 }
 
+function playRound(humanChoise, computerChoise) {}
+
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(toInsensitive(getHumanChoise()));
+const humanSelection = toInsensitive(getHumanChoise());
+const computerSelection = toInsensitive(getComputerChoise());
+
+console.log(computerSelection);
