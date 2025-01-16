@@ -10,7 +10,7 @@ function getComputerChoise() {
 }
 
 function getHumanChoise() {
-  let inputMessage = prompt("What's yours choise? (Rock,Paper, or Scissor");
+  let inputMessage = prompt("What's yours choise? {Rock,Paper, or Scissor}");
   inputMessage = toInsensitive(inputMessage);
   return userInputValidation(inputMessage);
 }
