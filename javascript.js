@@ -11,7 +11,15 @@ function getComputerChoise() {
 
 function getHumanChoise() {
   let inputMessage = prompt("What's yours choise? (Rock,Paper, or Scissor");
-  return inputMessage;
+  return userInputValidation(inputMessage);
+}
+
+function userInputValidation(input) {
+  if (input === "rock" || input === "paper" || input === "scissor") {
+    return input;
+  } else {
+    return "Invalid";
+  }
 }
 
 function toInsensitive(text) {
@@ -46,4 +54,4 @@ let computerScore = 0;
 const humanSelection = toInsensitive(getHumanChoise());
 const computerSelection = toInsensitive(getComputerChoise());
 
-console.log(playRound(humanSelection, computerSelection));
+console.log(getHumanChoise());
