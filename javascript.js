@@ -9,10 +9,9 @@ function getComputerChoise() {
   }
 }
 
-function getHumanChoise() {
-  let inputMessage = prompt("What's yours choise? {Rock,Paper, or Scissor}");
-  inputMessage = toInsensitive(inputMessage);
-  return userInputValidation(inputMessage);
+function getHumanChoise(buttonValue) {
+  inputValue = toInsensitive(buttonValue);
+  return userInputValidation(inputValue);
 }
 
 function userInputValidation(input) {
@@ -77,11 +76,12 @@ function clearDivContent() {
 }
 
 function createRPSButton() {
-  const buttonName = ["rock", "paper", "scissors"];
+  const buttonName = ["rock", "paper", "scissor"];
   const div = document.querySelector("div");
   for (let i = 0; i < buttonName.length; i++) {
     const button = document.createElement("button");
     button.setAttribute("value", buttonName[i]);
+    button.setAttribute("id", buttonName[i]);
     button.innerText = buttonName[i];
     div.appendChild(button);
   }
@@ -99,12 +99,18 @@ function showGame() {
 
 function playGame() {
   showGame();
-  const humanSelection = getHumanChoise();
+  const buttonList = document.querySelectorAll("button");
+  let humanSelection;
   const computerSelection = toInsensitive(getComputerChoise());
-  if (humanSelection === 0) {
-    console.log("Input Invalid");
-  } else {
-    playRound(humanSelection, computerSelection);
+  for (const button of buttonList) {
+    button.addEventListener("click", function (e) {
+      humanSelection = getHumanChoise(e.target.value);
+      if (humanSelection === 0) {
+        console.log("Input Invalid");
+      } else {
+        playRound(humanSelection, computerSelection);
+      }
+    });
   }
 }
 
