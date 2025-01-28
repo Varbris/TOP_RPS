@@ -10,6 +10,7 @@ function getComputerChoise() {
 }
 
 function getHumanChoise() {
+  clearHtmlBody();
   let inputMessage = prompt("What's yours choise? {Rock,Paper, or Scissor}");
   inputMessage = toInsensitive(inputMessage);
   return userInputValidation(inputMessage);
@@ -69,6 +70,11 @@ function checkWinner(humanChoise, computerChoise) {
     );
     return 2;
   }
+}
+
+function clearHtmlBody() {
+  const body = document.querySelector("body");
+  body.innerHTML = "";
 }
 
 function playGame() {
