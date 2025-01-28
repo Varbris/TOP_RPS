@@ -10,7 +10,8 @@ function getComputerChoise() {
 }
 
 function getHumanChoise() {
-  clearHtmlBody();
+  clearDivContent();
+  createRPSButton();
   let inputMessage = prompt("What's yours choise? {Rock,Paper, or Scissor}");
   inputMessage = toInsensitive(inputMessage);
   return userInputValidation(inputMessage);
@@ -72,9 +73,20 @@ function checkWinner(humanChoise, computerChoise) {
   }
 }
 
-function clearHtmlBody() {
-  const body = document.querySelector("body");
-  body.innerHTML = "";
+function clearDivContent() {
+  const div = document.querySelector("div");
+  div.innerHTML = "";
+}
+
+function createRPSButton() {
+  const buttonName = ["rock", "paper", "scissors"];
+  const div = document.querySelector("div");
+  for (let i = 0; i < buttonName.length; i++) {
+    const button = document.createElement("button");
+    button.setAttribute("value", buttonName[i]);
+    button.innerText = buttonName[i];
+    div.appendChild(button);
+  }
 }
 
 function playGame() {
