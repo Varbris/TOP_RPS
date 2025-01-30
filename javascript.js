@@ -90,9 +90,11 @@ function playGame() {
   showGame();
   const buttonList = document.querySelectorAll("button");
   let humanSelection;
+  let round = 1;
   const div = document.querySelector(".div");
   const human = document.createElement("h2");
   const computer = document.createElement("h2");
+  const roundText = document.createElement("h2");
 
   for (const button of buttonList) {
     button.addEventListener("click", function (e) {
@@ -102,14 +104,14 @@ function playGame() {
         console.log("Input Invalid");
       } else {
         playRound(humanSelection, computerSelection);
-        console.log(humanSelection);
-        console.log("computer:", computerSelection);
       }
+      roundText.innerText = "Round: " + round;
       human.innerText = "Human Score: " + humanScore;
       computer.innerText = "Computer Score: " + computerScore;
+      div.appendChild(roundText);
       div.appendChild(human);
       div.appendChild(computer);
-
+      round++;
       checkFinalScore(humanScore, computerScore);
     });
   }
