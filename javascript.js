@@ -110,25 +110,33 @@ function playGame() {
       div.appendChild(human);
       div.appendChild(computer);
 
-      // checkFinalScore(humanScore, computerScore);
+      checkFinalScore(humanScore, computerScore);
     });
   }
 }
 
+function displayFinalWinner(winner, score) {
+  const div = document.querySelector(".div");
+  div.innerHTML = "";
+  const announcement = document.createElement("h1");
+  announcement.innerText = `${winner} Win! final score: ${score}`;
+  div.appendChild(announcement);
+
+  const backButton = document.createElement("button");
+  backButton.innerText = "Back";
+  backButton.addEventListener("click", function () {
+    window.location.reload(true);
+  });
+  div.appendChild(backButton);
+}
+
 function checkFinalScore(human, computer) {
-  if (human === 0 && computer === 0) {
-    console.log("Game Start!");
-  } else if (human === 5) {
+  if (human === 5) {
     console.log("Humanity Win! final score: " + human);
-    const div = document.querySelector(".div");
-    div.innerHTML = "";
-    const announcement = document.createElement("h1");
-    announcement.innerText = "Humanity Win! final score: " + human;
-    div.appendChild(announcement);
+    displayFinalWinner("Human", human);
   } else if (computer === 5) {
     console.log("Computer Win! final score: " + computer);
-  } else {
-    console.log("Its a Tie!");
+    displayFinalWinner("Computer", computer);
   }
 }
 
