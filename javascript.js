@@ -43,18 +43,20 @@ function playRound(humanChoise, computerChoise) {
 
 function checkWinner(humanChoise, computerChoise) {
   if (humanChoise === computerChoise) {
-    console.log("its a tie");
+    roundWinner = "its a tie";
   } else if (
     (humanChoise === "paper" && computerChoise === "rock") ||
     (humanChoise === "rock" && computerChoise === "scissor") ||
     (humanChoise === "scissor" && computerChoise === "paper")
   ) {
+    roundWinner = "Human";
     return 1;
   } else if (
     (computerChoise === "paper" && humanChoise === "rock") ||
     (computerChoise === "rock" && humanChoise === "scissor") ||
     (computerChoise === "scissor" && humanChoise === "paper")
   ) {
+    roundWinner = "Computer";
     return 2;
   }
 }
@@ -95,6 +97,7 @@ function playGame() {
   const human = document.createElement("h2");
   const computer = document.createElement("h2");
   const roundText = document.createElement("h2");
+  const roundWinnerElement = document.createElement("h2");
 
   for (const button of buttonList) {
     button.addEventListener("click", function (e) {
@@ -108,7 +111,9 @@ function playGame() {
       roundText.innerText = "Round: " + round;
       human.innerText = "Human Score: " + humanScore;
       computer.innerText = "Computer Score: " + computerScore;
+      roundWinnerElement.innerText = "Round Winner: " + roundWinner;
       div.appendChild(roundText);
+      div.appendChild(roundWinnerElement);
       div.appendChild(human);
       div.appendChild(computer);
       round++;
@@ -144,6 +149,7 @@ function checkFinalScore(human, computer) {
 
 let humanScore = 0;
 let computerScore = 0;
+let roundWinner = "";
 
 const playButton = document.querySelector("#play");
 playButton.addEventListener("click", () => playGame());
