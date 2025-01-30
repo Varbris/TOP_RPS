@@ -35,10 +35,8 @@ function playRound(humanChoise, computerChoise) {
   if (winner === 0) {
     console.log("Its a Draw");
   } else if (winner === 1) {
-    console.log("Humanity wins!");
     return humanScore++;
   } else if (winner === 2) {
-    console.log("Computer wins!");
     return computerScore++;
   }
 }
@@ -102,6 +100,10 @@ function playGame() {
   const buttonList = document.querySelectorAll("button");
   let humanSelection;
   const computerSelection = toInsensitive(getComputerChoise());
+  const div = document.querySelector(".div");
+  const human = document.createElement("h2");
+  const computer = document.createElement("h2");
+
   for (const button of buttonList) {
     button.addEventListener("click", function (e) {
       humanSelection = getHumanChoise(e.target.value);
@@ -110,14 +112,18 @@ function playGame() {
       } else {
         playRound(humanSelection, computerSelection);
       }
+      human.innerText = "Human Score: " + humanScore;
+      computer.innerText = "Computer Score: " + computerScore;
+      div.appendChild(human);
+      div.appendChild(computer);
     });
   }
 }
 
 function checkFinalScore(human, computer) {
-  if (human > computer) {
+  if (human === 5) {
     console.log("Humanity Win! final score: " + human);
-  } else if (human < computer) {
+  } else if (computer === 5) {
     console.log("Computer Win! final score: " + computer);
   } else {
     console.log("Its a Tie!");
@@ -127,7 +133,6 @@ function checkFinalScore(human, computer) {
 let humanScore = 0;
 let computerScore = 0;
 
-checkFinalScore(humanScore, computerScore);
-
 const playButton = document.querySelector("#play");
 playButton.addEventListener("click", () => playGame());
+checkFinalScore(humanScore, computerScore);
